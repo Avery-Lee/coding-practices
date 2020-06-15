@@ -28,7 +28,7 @@ keys = [i for i in range(32)]
 cryptogram = [0b10101, 0b00100, 0b10101, 0b01011, 0b11001, 0b00011, 0b01011, 0b10101, 0b00100, 0b11001, 0b11010]
 plaintext = []
 
-def decrypt(value):
+def Decrypt(value):
     value += 65                                   # ∵ASCII code 'A' is 65. 
     if value > 25+65:                             # ∵Alphabet has 26 characters.
         if value == 26+65:
@@ -43,7 +43,7 @@ for key in keys:
     temp_decrypt = []
     for crypt in cryptogram:
         value = crypt ^ key
-        temp_decrypt.append(decrypt(value))
+        temp_decrypt.append(Decrypt(value))
     plaintext.append(''.join(temp_decrypt))
     temp_dec = []
 
