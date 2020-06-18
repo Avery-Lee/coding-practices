@@ -29,13 +29,15 @@ cryptogram = [0b10101, 0b00100, 0b10101, 0b01011, 0b11001, 0b00011, 0b01011, 0b1
 plaintext = []
 
 def Decrypt(value):
-    value += 65                                   # ∵ASCII code 'A' is 65. 
-    if value > 25+65:                             # ∵Alphabet has 26 characters.
-        if value == 26+65:
+    ASCII = 65                                    # ∵ASCII code 'A' is 65.
+    ALPHABET = 26 - 1                             # ∵Alphabet has 26 characters. & Index number starts 0.
+    value += ASCII                                  
+    if value > ALPHABET + ASCII:                             
+        if value == ALPHABET + 1 + ASCII:
             value = ' '
             return value
         else:
-            value -= 26
+            value -= ALPHABET + 1
     return chr(value)
 
 
