@@ -26,6 +26,7 @@ int main()
 	}
 
 
+
 	sort(students.begin(), students.end(), compare);
 
 	cout << endl << "<<The grade of student(s)>>" << endl;
