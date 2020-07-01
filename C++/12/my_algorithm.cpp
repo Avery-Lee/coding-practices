@@ -145,8 +145,8 @@ void my_split(const string& str, Out os) {
 	}
 }
 
-template <class In>
-bool my_equal(In beg, In end, In dest)
+template <class In, class X>
+bool my_equal(In beg, In end, X dest)
 {
 	while (beg != end)
 	{
