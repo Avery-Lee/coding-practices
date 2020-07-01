@@ -7,7 +7,6 @@
 using std::vector;
 using std::string;
 using std::domain_error;
-using std::swap;
 
 template <class T>
 T median(vector<T> v)
@@ -85,13 +84,22 @@ void my_replace(For beg, For end, const X& x, const X& y)
 	}
 }
 
+template <class X>
+void my_swap(X& a, X& b)
+{
+	X temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+
 template <class Bi>
 void my_reverse(Bi begin, Bi end)
 {
 	while (begin != end) {
 		--end;
 		if (begin != end)
-			swap(*begin++, *end);
+			my_swap(*begin++, *end);
 	}
 }
 
@@ -220,7 +228,7 @@ For my_partition(For beg, For end, Pred p)
 	while (beg != end) 
 	{
 		if (p(*beg))
-			swap(*inst++, *beg);
+			my_swap(*inst++, *beg);
 		
 		++beg;
 	}
