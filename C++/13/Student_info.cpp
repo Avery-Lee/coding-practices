@@ -8,27 +8,11 @@ using std::string;
 using std::map;
 using std::inserter;
 using std::make_pair;
-
+using std::remove_copy_if;
 
 bool compare(const Student_info& x, const Student_info& y)
 {
 	return x.name() < y.name();
-}
-
-istream& read_hw(istream& is, vector<double>& hw)
-{
-	if (is)
-	{
-		is.clear();
-
-		double x;
-		while (is >> x)
-			hw.push_back(x);
-
-		is.clear();
-	}
-
-	return is;
 }
 
 template<class T>
@@ -58,12 +42,34 @@ double grade(double midterm, double final, double homework)
 	return 0.2 * midterm + 0.4 * final + 0.4 * homework;
 }
 
+istream& Student_info::read_hw(istream& is, vector<double>& hw)
+{
+	if (is)
+	{
+		is.clear();
+
+		double x;
+		while (is >> x)
+			hw.push_back(x);
+
+		is.clear();
+	}
+
+	return is;
+}
+
 
 istream& Student_info::read(istream& in)
 {
 	in >> n >> midterm >> final;
 	read_hw(in, homework);
+
 	g = ::grade(midterm, final, homework);
+
+	if (is_pass())
+		p_or_f = "Pass";
+	else if (!is_pass())
+		p_or_f = "Fail";
 	return in;
 }
 
@@ -72,11 +78,8 @@ double Student_info::grade() const
 	return ::grade(midterm, final, homework);
 }
 
-Student_info::Student_info() : midterm(0), final(0) { }
+Student_info::Student_info() : midterm(0), final(0), g(0) { }
 
 Student_info::Student_info(istream& is) { read(is); }
 
-
-{
-
-}
+bool Student_info::is_pass() const { return g >= 60; }
