@@ -27,6 +27,15 @@ public:
 		unchecked_append(val);
 	}
 
+	size_type size() const { return avail - data; }
+
+	iterator begin() { return data; }
+	const_iterator begin() { return data; }
+
+	iterator end() { return avail; }
+	const_iterator end() { return avail; }
+
+
 private:
 	iterator data;
 	iterator avail;

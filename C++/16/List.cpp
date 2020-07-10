@@ -8,7 +8,7 @@ template <class T> List<T>& List<T>::operator=(const List& rhs)
 	if (&rhs != this) {
 		uncreate();
 
-		create(rhs.begin(), rhs.end())
+		create(rhs.begin(), rhs.end());
 	}
 	return *this;
 }
@@ -28,7 +28,7 @@ template <class T> void List<T>::create(size_type n, const T& val)
 template <class T> void List<T>::create(const_iterator i, const_iterator j)
 {
 	data = alloc.allocate(j - i);
-	limit = avail = uninitialized_copy(i, j , data)
+	limit = avail = uninitialized_copy(i, j, data);
 }
 
 template <class T> void List<T>::uncreate()
@@ -109,3 +109,7 @@ template <class T> typename List<T>::iterator List<T>::List_destroy(iterator beg
 	return avail;
 }
 
+int main()
+{
+
+}
