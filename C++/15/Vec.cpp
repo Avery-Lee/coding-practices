@@ -1,5 +1,8 @@
 #include "Vec.h"
 
+using std::uninitialized_fill;
+using std::uninitialized_copy;
+
 template <class T> Vec<T>& Vec<T>::operator=(const Vec& rhs)
 {
 	if (&rhs != this) {
@@ -19,13 +22,13 @@ template <class T> void Vec<T>::create(size_type n, const T& val)
 {
 	data = alloc.allocate(n);
 	limit = avail = data + n;
-	uninitialized_fil(data, limit, val);
+	uninitialized_fill(data, limit, val);
 }
 
 template <class T> void Vec<T>::create(const_iterator i, const_iterator j)
 {
 	data = alloc.allocate(j - i);
-	limit = avail = unitialized_copy(i, j, data);
+	limit = avail = uninitialized_copy(i, j, data);
 }
 
 template <class T> void Vec<T>::uncreate()
